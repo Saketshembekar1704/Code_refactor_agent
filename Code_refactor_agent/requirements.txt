@@ -1,0 +1,24 @@
+# Core Dependencies
+crewai==0.28.8
+crewai-tools==0.1.8
+langchain==0.1.14
+langchain-ollama==0.1.2
+langchain-community==0.0.20
+
+# UI Framework
+streamlit==1.28.1
+
+# Code Analysis Tools
+pylint==3.0.2
+radon==6.0.1
+
+# Utilities
+python-dotenv==1.0.0
+requests==2.31.0
+
+# Git Integration (Optional)
+GitPython==3.1.40
+
+# Additional Dependencies
+pydantic==2.5.0
+typing-extensions==4.8.0
