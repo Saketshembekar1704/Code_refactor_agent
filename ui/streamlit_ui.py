@@ -112,6 +112,128 @@ def main():
             layout="wide"
         )
         
+        # Inject custom CSS to make the main container wider and code output
+        # look like a proper code editor instead of a narrow phone screen.
+        st.markdown(
+            """
+            <style>
+                /* ── Global layout: use full viewport width ── */
+                .block-container {
+                    max-width: 100% !important;
+                    padding: 1rem 2rem !important;
+                }
+
+                /* Remove every inner width cap Streamlit might set */
+                .element-container,
+                .stMarkdown,
+                .stExpander,
+                [data-testid="stExpander"],
+                [data-testid="stExpanderDetails"],
+                .streamlit-expanderContent {
+                    max-width: 100% !important;
+                    width: 100% !important;
+                }
+
+                /* ── Code blocks / diff viewer: full-width, editor-style ── */
+                .stCodeBlock,
+                .stCode,
+                [data-testid="stCodeBlock"],
+                [data-testid="stCode"] {
+                    max-width: 100% !important;
+                    width: 100% !important;
+                }
+
+                .stCodeBlock pre,
+                .stCode pre,
+                [data-testid="stCodeBlock"] pre,
+                [data-testid="stCode"] pre {
+                    max-width: 100% !important;
+                    width: 100% !important;
+                    white-space: pre !important;
+                    overflow-x: auto !important;
+                    font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono',
+                                 'Consolas', 'Courier New', monospace !important;
+                    font-size: 0.875rem !important;
+                    line-height: 1.65 !important;
+                    tab-size: 4 !important;
+                    border-radius: 8px !important;
+                    padding: 1rem 1.25rem !important;
+                }
+
+                pre code, .stCodeBlock code, [data-testid="stCodeBlock"] code {
+                    white-space: pre !important;
+                    word-break: normal !important;
+                    overflow-wrap: normal !important;
+                    font-size: inherit !important;
+                    line-height: inherit !important;
+                    font-family: inherit !important;
+                }
+
+                /* ── Expander styling ── */
+                .streamlit-expanderContent,
+                [data-testid="stExpanderDetails"] {
+                    padding: 0.75rem 1rem !important;
+                    max-width: 100% !important;
+                    width: 100% !important;
+                }
+
+                .streamlit-expanderHeader,
+                [data-testid="stExpander"] summary {
+                    font-size: 1.05rem !important;
+                    font-weight: 600 !important;
+                }
+
+                /* ── Text areas (raw output) ── */
+                .stTextArea textarea {
+                    font-family: 'Cascadia Code', 'Fira Code', 'Consolas',
+                                 'Courier New', monospace !important;
+                    font-size: 0.875rem !important;
+                    line-height: 1.55 !important;
+                    max-width: 100% !important;
+                    width: 100% !important;
+                }
+
+                /* ── Custom diff container (HTML-rendered diffs) ── */
+                .diff-container {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    overflow-x: auto;
+                    background: #ffffff;
+                    border: 1px solid #e1e4e8;
+                    border-radius: 8px;
+                    padding: 1rem 1.25rem;
+                    font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono',
+                                 'Consolas', 'Courier New', monospace;
+                    font-size: 0.875rem;
+                    line-height: 1.65;
+                    color: #24292e;
+                }
+                .diff-container .diff-line {
+                    white-space: pre;
+                    display: block;
+                    padding: 1px 0;
+                }
+                .diff-container .diff-add {
+                    background: #e6ffec;
+                    color: #22863a;
+                }
+                .diff-container .diff-del {
+                    background: #ffebe9;
+                    color: #cb2431;
+                }
+                .diff-container .diff-hunk {
+                    color: #6f42c1;
+                    font-style: italic;
+                }
+                .diff-container .diff-header {
+                    color: #005cc5;
+                    font-weight: bold;
+                }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+        
         # Initialize session state
         if 'target_directory' not in st.session_state:
             st.session_state.target_directory = None
@@ -280,22 +402,26 @@ def main():
         
         target_dir = st.session_state.target_directory
         
+        # Capture button clicks inside columns but DO NOT render
+        # results here – columns constrain output to 1/3 width.
         with col3:
-            # unchanged condition
-            if st.button("🔍 Run Analysis", disabled=not target_dir):
-                run_analysis(target_dir, mode, create_backup)
+            run_analysis_clicked = st.button("🔍 Run Analysis", disabled=not target_dir)
         
         with col4:
-            # allow refactoring whenever we have a target_dir,
-            # independent of the sidebar "mode" toggle
-            if st.button("🔧 Start Refactoring", disabled=not target_dir):
-                # we still pass "refactor" down so behavior is clear
-                run_refactoring(target_dir, create_backup)
+            run_refactor_clicked = st.button("🔧 Start Refactoring", disabled=not target_dir)
         
         with col5:
-            if st.button("📥 Download Results", disabled=not st.session_state.results_ready):
-                if target_dir:
-                    create_download_package(target_dir)
+            download_clicked = st.button("📥 Download Results", disabled=not st.session_state.results_ready)
+        
+        # ── Render results at FULL page width (outside columns) ──
+        if run_analysis_clicked and target_dir:
+            run_analysis(target_dir, mode, create_backup)
+        
+        if run_refactor_clicked and target_dir:
+            run_refactoring(target_dir, create_backup)
+        
+        if download_clicked and target_dir:
+            create_download_package(target_dir)
 
     except Exception as e:
         st.error(f"Application error: {str(e)}")
@@ -412,6 +538,25 @@ def display_structured_results(result_data):
         else:
             st.info("Documentation coverage data not available.")
 
+def render_diff_html(diff_text: str) -> str:
+    """Convert a unified diff string to syntax-highlighted HTML."""
+    import html as _html
+    lines_html = []
+    for line in diff_text.splitlines():
+        escaped = _html.escape(line)
+        if line.startswith('@@'):
+            lines_html.append(f'<span class="diff-line diff-hunk">{escaped}</span>')
+        elif line.startswith('---') or line.startswith('+++'):
+            lines_html.append(f'<span class="diff-line diff-header">{escaped}</span>')
+        elif line.startswith('+'):
+            lines_html.append(f'<span class="diff-line diff-add">{escaped}</span>')
+        elif line.startswith('-'):
+            lines_html.append(f'<span class="diff-line diff-del">{escaped}</span>')
+        else:
+            lines_html.append(f'<span class="diff-line">{escaped}</span>')
+    return '<div class="diff-container">' + '\n'.join(lines_html) + '</div>'
+
+
 def run_refactoring(target_directory: str, create_backup: bool):
     """Run the full refactoring workflow"""
     st.header("🔧 Refactoring Process")
@@ -441,8 +586,14 @@ def run_refactoring(target_directory: str, create_backup: bool):
         progress_bar.progress(25)
         status_text.text("🔍 Analyzing code...")
         
+        # Safe isolation path
+        work_dir = target_directory.rstrip('/') + "_refactored"
+        if os.path.exists(work_dir):
+            shutil.rmtree(work_dir)
+        shutil.copytree(target_directory, work_dir)
+
         inputs = {
-            'target_directory': target_directory,
+            'target_directory': work_dir,
             'mode': 'refactor'
         }
         
@@ -454,8 +605,8 @@ def run_refactoring(target_directory: str, create_backup: bool):
         progress_bar.progress(100)
         status_text.text("✅ Refactoring completed!")
         
-        st.success("🎉 Refactoring completed successfully!")
-        
+        st.success(f"🎉 Refactoring completed safely in isolated directory: {work_dir}")
+
         # Store results
         st.session_state.refactor_result = result
         st.session_state.results_ready = True
@@ -467,13 +618,25 @@ def run_refactoring(target_directory: str, create_backup: bool):
             # Mock result format
             if 'changes_applied' in result:
                 st.markdown("### Changes Applied:")
-                for change in result['changes_applied']:
-                    st.write(f"✅ {change}")
+                if result['changes_applied']:
+                    for change in result['changes_applied']:
+                        st.write(f"✅ {change}")
+                else:
+                    st.info("No changes were needed.")
             
             if 'files_modified' in result:
                 st.markdown("### Files Modified:")
-                for file in result['files_modified']:
-                    st.write(f"📝 {file}")
+                if result['files_modified']:
+                    for file in result['files_modified']:
+                        st.write(f"📝 {file}")
+                else:
+                    st.info("No files were modified.")
+
+            if 'file_diffs' in result and result['file_diffs']:
+                st.markdown("### Code Changes:")
+                for file, diff in result['file_diffs'].items():
+                    with st.expander(f"View changes for {file}"):
+                        st.markdown(render_diff_html(diff), unsafe_allow_html=True)
         else:
             # Original format
             with st.expander("📋 Refactoring Details", expanded=True):

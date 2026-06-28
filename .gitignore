@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+.env
+.idea/
+.vscode/
+test_project_backup_*/
+result_screenshots/
+*.txt
+*.json
+!benchmark_results.json

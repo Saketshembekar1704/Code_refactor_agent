@@ -1,0 +1,411 @@
+[
+  {
+    "project": "Data Processing Utilities",
+    "dir": "project1_utils",
+    "before": {
+      "project": "Data Processing Utilities",
+      "files": 1,
+      "total_loc": 137,
+      "total_lines": 152,
+      "functions": 15,
+      "classes": 1,
+      "avg_cyclomatic_complexity": 3.2,
+      "avg_maintainability_index": 50.34,
+      "doc_coverage_pct": 0.0,
+      "funcs_with_docstrings": 0,
+      "funcs_without_docstrings": 15,
+      "code_smells": {
+        "duplicate_functions": 2,
+        "poor_naming": 17,
+        "missing_docstrings": 16,
+        "long_methods": 1,
+        "total": 36
+      }
+    },
+    "after": {
+      "project": "Data Processing Utilities",
+      "files": 1,
+      "total_loc": 148,
+      "total_lines": 175,
+      "functions": 13,
+      "classes": 1,
+      "avg_cyclomatic_complexity": 3.23,
+      "avg_maintainability_index": 49.33,
+      "doc_coverage_pct": 100.0,
+      "funcs_with_docstrings": 13,
+      "funcs_without_docstrings": 0,
+      "code_smells": {
+        "duplicate_functions": 0,
+        "poor_naming": 4,
+        "missing_docstrings": 0,
+        "long_methods": 1,
+        "total": 5
+      }
+    },
+    "deltas": {
+      "cc_reduction": -0.03,
+      "mi_improvement": -1.01,
+      "loc_reduction": -11,
+      "doc_coverage_improvement": 100.0,
+      "functions_removed": 2,
+      "smells_resolved": 31
+    },
+    "runtime_seconds": 1.01,
+    "refactor_status": "success",
+    "changes_applied": [
+      "data_processor.py: Removed 2 duplicate functions",
+      "data_processor.py: Improved variable names to be more descriptive",
+      "data_processor.py: Added docstring to function 'calc'",
+      "data_processor.py: Added docstring to function '__init__'",
+      "data_processor.py: Improved variable names to be more descriptive",
+      "data_processor.py: Added docstring to function 'process_data'",
+      "data_processor.py: Improved variable names to be more descriptive",
+      "data_processor.py: Added docstring to function 'add'",
+      "data_processor.py: Improved variable names to be more descriptive",
+      "data_processor.py: Added docstring to function 'remove'",
+      "data_processor.py: Added docstring to function 'get_all'",
+      "data_processor.py: Added docstring to function 'count'",
+      "data_processor.py: Refactored class name 'user_manager_class_thing' to PEP8 'UserManager'",
+      "data_processor.py: Improved variable names to be more descriptive",
+      "data_processor.py: Added docstring to function 'validate_email'",
+      "data_processor.py: Added docstring to function 'read_data'",
+      "data_processor.py: Added docstring to function 'parse_csv_data'",
+      "data_processor.py: Improved variable names to be more descriptive",
+      "data_processor.py: Added docstring to function 'transform_records'",
+      "data_processor.py: Improved variable names to be more descriptive",
+      "data_processor.py: Added docstring to function 'compute_stats'",
+      "data_processor.py: Improved variable names to be more descriptive",
+      "data_processor.py: Added docstring to function 'format_output'"
+    ],
+    "files_modified": [
+      "data_processor.py"
+    ]
+  },
+  {
+    "project": "File Operations Module",
+    "dir": "project2_fileops",
+    "before": {
+      "project": "File Operations Module",
+      "files": 1,
+      "total_loc": 131,
+      "total_lines": 152,
+      "functions": 20,
+      "classes": 2,
+      "avg_cyclomatic_complexity": 2.1,
+      "avg_maintainability_index": 51.21,
+      "doc_coverage_pct": 0.0,
+      "funcs_with_docstrings": 0,
+      "funcs_without_docstrings": 20,
+      "code_smells": {
+        "duplicate_functions": 1,
+        "poor_naming": 18,
+        "missing_docstrings": 22,
+        "long_methods": 0,
+        "total": 41
+      }
+    },
+    "after": {
+      "project": "File Operations Module",
+      "files": 1,
+      "total_loc": 164,
+      "total_lines": 204,
+      "functions": 19,
+      "classes": 2,
+      "avg_cyclomatic_complexity": 2.05,
+      "avg_maintainability_index": 47.33,
+      "doc_coverage_pct": 100.0,
+      "funcs_with_docstrings": 19,
+      "funcs_without_docstrings": 0,
+      "code_smells": {
+        "duplicate_functions": 0,
+        "poor_naming": 15,
+        "missing_docstrings": 0,
+        "long_methods": 0,
+        "total": 15
+      }
+    },
+    "deltas": {
+      "cc_reduction": 0.05,
+      "mi_improvement": -3.88,
+      "loc_reduction": -33,
+      "doc_coverage_improvement": 100.0,
+      "functions_removed": 1,
+      "smells_resolved": 26
+    },
+    "runtime_seconds": 1.01,
+    "refactor_status": "success",
+    "changes_applied": [
+      "file_manager.py: Removed 1 duplicate functions",
+      "file_manager.py: Added docstring to function '__init__'",
+      "file_manager.py: Added docstring to function 'read'",
+      "file_manager.py: Added docstring to function 'write'",
+      "file_manager.py: Added docstring to function 'delete'",
+      "file_manager.py: Added docstring to function 'list_files'",
+      "file_manager.py: Added docstring to function 'get_size'",
+      "file_manager.py: Added docstring to function 'search'",
+      "file_manager.py: Added docstring to function 'replace'",
+      "file_manager.py: Added docstring to function 'count_lines'",
+      "file_manager.py: Added docstring to function 'get_hash'",
+      "file_manager.py: Refactored class name 'file_handler_thing' to PEP8 'FileHandlerThing'",
+      "file_manager.py: Added docstring to function 'process_path'",
+      "file_manager.py: Added docstring to function 'count_files'",
+      "file_manager.py: Added docstring to function 'batch_rename'",
+      "file_manager.py: Added docstring to function 'find_duplicates'",
+      "file_manager.py: Added docstring to function '__init__'",
+      "file_manager.py: Added docstring to function 'log'",
+      "file_manager.py: Added docstring to function 'get_logs'",
+      "file_manager.py: Added docstring to function 'clear'",
+      "file_manager.py: Added docstring to function 'count'",
+      "file_manager.py: Refactored class name 'log_writer_thing' to PEP8 'LogWriterThing'"
+    ],
+    "files_modified": [
+      "file_manager.py"
+    ]
+  },
+  {
+    "project": "Task Management System",
+    "dir": "project3_taskmanager",
+    "before": {
+      "project": "Task Management System",
+      "files": 1,
+      "total_loc": 129,
+      "total_lines": 145,
+      "functions": 15,
+      "classes": 1,
+      "avg_cyclomatic_complexity": 3.8,
+      "avg_maintainability_index": 50.36,
+      "doc_coverage_pct": 0.0,
+      "funcs_with_docstrings": 0,
+      "funcs_without_docstrings": 15,
+      "code_smells": {
+        "duplicate_functions": 1,
+        "poor_naming": 14,
+        "missing_docstrings": 16,
+        "long_methods": 0,
+        "total": 31
+      }
+    },
+    "after": {
+      "project": "Task Management System",
+      "files": 1,
+      "total_loc": 147,
+      "total_lines": 176,
+      "functions": 14,
+      "classes": 1,
+      "avg_cyclomatic_complexity": 3.64,
+      "avg_maintainability_index": 48.46,
+      "doc_coverage_pct": 100.0,
+      "funcs_with_docstrings": 14,
+      "funcs_without_docstrings": 0,
+      "code_smells": {
+        "duplicate_functions": 0,
+        "poor_naming": 9,
+        "missing_docstrings": 0,
+        "long_methods": 0,
+        "total": 9
+      }
+    },
+    "deltas": {
+      "cc_reduction": 0.16,
+      "mi_improvement": -1.9,
+      "loc_reduction": -18,
+      "doc_coverage_improvement": 100.0,
+      "functions_removed": 1,
+      "smells_resolved": 22
+    },
+    "runtime_seconds": 1.01,
+    "refactor_status": "success",
+    "changes_applied": [
+      "task_manager.py: Removed 1 duplicate functions",
+      "task_manager.py: Added docstring to function '__init__'",
+      "task_manager.py: Added docstring to function 'add_task'",
+      "task_manager.py: Added docstring to function 'remove_task'",
+      "task_manager.py: Added docstring to function 'update_status'",
+      "task_manager.py: Added docstring to function 'get_by_priority'",
+      "task_manager.py: Added docstring to function 'get_by_status'",
+      "task_manager.py: Added docstring to function 'get_overdue'",
+      "task_manager.py: Added docstring to function 'count_by_status'",
+      "task_manager.py: Added docstring to function 'to_json'",
+      "task_manager.py: Added docstring to function 'search'",
+      "task_manager.py: Refactored class name 'task_manager_class_thing' to PEP8 'TaskManager'",
+      "task_manager.py: Added docstring to function 'validate_task_input'",
+      "task_manager.py: Added docstring to function 'format_task'",
+      "task_manager.py: Improved variable names to be more descriptive",
+      "task_manager.py: Added docstring to function 'sort_tasks'",
+      "task_manager.py: Improved variable names to be more descriptive",
+      "task_manager.py: Added docstring to function 'generate_report'"
+    ],
+    "files_modified": [
+      "task_manager.py"
+    ]
+  },
+  {
+    "project": "Math/Statistics Utilities",
+    "dir": "project4_mathutils",
+    "before": {
+      "project": "Math/Statistics Utilities",
+      "files": 1,
+      "total_loc": 136,
+      "total_lines": 157,
+      "functions": 21,
+      "classes": 1,
+      "avg_cyclomatic_complexity": 2.62,
+      "avg_maintainability_index": 48.17,
+      "doc_coverage_pct": 0.0,
+      "funcs_with_docstrings": 0,
+      "funcs_without_docstrings": 21,
+      "code_smells": {
+        "duplicate_functions": 3,
+        "poor_naming": 21,
+        "missing_docstrings": 22,
+        "long_methods": 0,
+        "total": 46
+      }
+    },
+    "after": {
+      "project": "Math/Statistics Utilities",
+      "files": 1,
+      "total_loc": 163,
+      "total_lines": 202,
+      "functions": 19,
+      "classes": 1,
+      "avg_cyclomatic_complexity": 2.58,
+      "avg_maintainability_index": 45.43,
+      "doc_coverage_pct": 100.0,
+      "funcs_with_docstrings": 19,
+      "funcs_without_docstrings": 0,
+      "code_smells": {
+        "duplicate_functions": 0,
+        "poor_naming": 0,
+        "missing_docstrings": 0,
+        "long_methods": 0,
+        "total": 0
+      }
+    },
+    "deltas": {
+      "cc_reduction": 0.04,
+      "mi_improvement": -2.74,
+      "loc_reduction": -27,
+      "doc_coverage_improvement": 100.0,
+      "functions_removed": 2,
+      "smells_resolved": 46
+    },
+    "runtime_seconds": 1.01,
+    "refactor_status": "success",
+    "changes_applied": [
+      "math_utils.py: Removed 2 duplicate functions",
+      "math_utils.py: Added docstring to function '__init__'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'add'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'subtract'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'multiply'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'divide'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'power'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'sqrt'",
+      "math_utils.py: Added docstring to function 'get_history'",
+      "math_utils.py: Added docstring to function 'clear_history'",
+      "math_utils.py: Refactored class name 'calculator_helper_thing' to PEP8 'CalculatorHelperThing'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'compute_average'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'compute_median'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'compute_std_dev'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'compute_variance'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'normalize_data'",
+      "math_utils.py: Added docstring to function 'is_prime'",
+      "math_utils.py: Added docstring to function 'fibonacci'",
+      "math_utils.py: Added docstring to function 'factorial'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'matrix_multiply'",
+      "math_utils.py: Improved variable names to be more descriptive",
+      "math_utils.py: Added docstring to function 'format_result'"
+    ],
+    "files_modified": [
+      "math_utils.py"
+    ]
+  },
+  {
+    "project": "Web/API Utilities",
+    "dir": "project5_webutils",
+    "before": {
+      "project": "Web/API Utilities",
+      "files": 1,
+      "total_loc": 139,
+      "total_lines": 154,
+      "functions": 14,
+      "classes": 1,
+      "avg_cyclomatic_complexity": 2.93,
+      "avg_maintainability_index": 48.46,
+      "doc_coverage_pct": 0.0,
+      "funcs_with_docstrings": 0,
+      "funcs_without_docstrings": 14,
+      "code_smells": {
+        "duplicate_functions": 3,
+        "poor_naming": 9,
+        "missing_docstrings": 15,
+        "long_methods": 0,
+        "total": 27
+      }
+    },
+    "after": {
+      "project": "Web/API Utilities",
+      "files": 1,
+      "total_loc": 132,
+      "total_lines": 157,
+      "functions": 12,
+      "classes": 1,
+      "avg_cyclomatic_complexity": 2.83,
+      "avg_maintainability_index": 50.92,
+      "doc_coverage_pct": 100.0,
+      "funcs_with_docstrings": 12,
+      "funcs_without_docstrings": 0,
+      "code_smells": {
+        "duplicate_functions": 0,
+        "poor_naming": 3,
+        "missing_docstrings": 0,
+        "long_methods": 0,
+        "total": 3
+      }
+    },
+    "deltas": {
+      "cc_reduction": 0.1,
+      "mi_improvement": 2.46,
+      "loc_reduction": 7,
+      "doc_coverage_improvement": 100.0,
+      "functions_removed": 2,
+      "smells_resolved": 24
+    },
+    "runtime_seconds": 1.01,
+    "refactor_status": "success",
+    "changes_applied": [
+      "web_utils.py: Removed 2 duplicate functions",
+      "web_utils.py: Added docstring to function '__init__'",
+      "web_utils.py: Added docstring to function 'handle_response'",
+      "web_utils.py: Added docstring to function 'get_history'",
+      "web_utils.py: Added docstring to function 'clear'",
+      "web_utils.py: Added docstring to function 'cache_response'",
+      "web_utils.py: Added docstring to function 'get_cached'",
+      "web_utils.py: Refactored class name 'api_response_handler_thing' to PEP8 'ApiResponseHandlerThing'",
+      "web_utils.py: Improved variable names to be more descriptive",
+      "web_utils.py: Added docstring to function 'parse_url'",
+      "web_utils.py: Improved variable names to be more descriptive",
+      "web_utils.py: Added docstring to function 'build_query_string'",
+      "web_utils.py: Improved variable names to be more descriptive",
+      "web_utils.py: Added docstring to function 'validate_response'",
+      "web_utils.py: Added docstring to function 'rate_limiter'",
+      "web_utils.py: Added docstring to function 'retry_request'",
+      "web_utils.py: Added docstring to function 'sanitize_input'"
+    ],
+    "files_modified": [
+      "web_utils.py"
+    ]
+  }
+]

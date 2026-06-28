@@ -52,21 +52,24 @@ def main():
     crew = RefactorCrew()
     
     try:
-        # optional backup for refactor mode
-        if args.mode == "refactor" and args.backup:
-            print("💾 Creating backup...")
-            backup_dir = args.target_dir + "_backup"
+        # Create output directory for refactored code
+        work_dir = args.target_dir
+        if args.mode == "refactor":
+            print("💾 Creating refactored output directory...")
+            work_dir = args.target_dir.rstrip('/') + "_refactored"
             import shutil
             try:
-                shutil.copytree(args.target_dir, backup_dir)
-                print(f"✅ Backup created: {backup_dir}")
+                if os.path.exists(work_dir):
+                    shutil.rmtree(work_dir)
+                shutil.copytree(args.target_dir, work_dir)
+                print(f"✅ Code isolated to: {work_dir}")
             except Exception as e:
-                print(f"❌ Backup failed: {e}")
+                print(f"❌ Failed to create output directory: {e}")
                 sys.exit(1)
 
         # unified kickoff call
         inputs = {
-            "target_directory": args.target_dir,
+            "target_directory": work_dir,
             "mode": args.mode,
         }
         print("🚀 Running crew...")
